@@ -1,21 +1,26 @@
 
-<<<<<<< HEAD
+import socket
 class SocketHandler():
 	sock = socket.socket()
 	def __init__(self):
-		self.sock.connect(("localhost", 3141))
-	#def connect(self, host, port):
-        #sock.connect((host, port))
+		self.sock.connect(("CAMP-2ABE89", 3141))
 	def send(self, msg):
 		self.sock.send(msg)
+	def receive(self)
+		chunks = []
+		bytes_recd = 0
+		chunk = self.sock.recv(2048)
+		chunks.append(chunk)
+        bytes_recd = bytes_recd + len(chunk)
+        return b''.join(chunks)
 wam = SocketHandler()
 wam.send('Hallo')
+
 print(socket.gethostname())
-=======
 
 
 
->>>>>>> ef47596c8566bedb70990892818f4f31ff314838
+
 # class Wsdf():
 	# x = 5
 	
