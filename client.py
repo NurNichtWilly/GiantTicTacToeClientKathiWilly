@@ -1,35 +1,47 @@
+import socket
 
-class 
-class Wsdf():
-	x = 5
+class SocketHandler():
+	def __init__(self, sock=none):
+		if sock is None:
+            self.sock = socket.socket()
+        else:
+            self.sock = sock
+	def connect(self, host, port):
+        self.sock.connect((host, port))
+
+wam = SocketHandler()
+wam.connect(self,, 10000)
+print(socket.gethostname())
+# class Wsdf():
+	# x = 5
 	
-	def __init__(self):
-		# konstruktor
+	# def __init__(self):
+		# # konstruktor
 	
-	@staticmethod
-	def __str__():
+	# @staticmethod
+	# def __str__():
 	
-	def yxcv(self, bar):
-		return bar
+	# def yxcv(self, bar):
+		# return bar
 	
-	def qwer(self, foo):
-		self.x = 5
-		test = self.yxcv(self.x)
-		return (test, foo)
+	# def qwer(self, foo):
+		# self.x = 5
+		# test = self.yxcv(self.x)
+		# return (test, foo)
 		
 
-uiae = asdf()
-print(uiae)
-x, y = uiae.qwer("uio")
+# uiae = asdf()
+# print(uiae)
+# x, y = uiae.qwer("uio")
 
-s = socket.socket(socket.AF_INET, socket.SOCK_DATAGRAM)
-socket.recv
-socket.send
+# s = socket.socket(socket.AF_INET, socket.SOCK_DATAGRAM)
+# socket.recv
+# socket.send
 
-'test\x00string'.encode('utf-8')
+# 'test\x00string'.encode('utf-8')
 
-if __name__ == '__main__':
-	pass
+# if __name__ == '__main__':
+	# pass
 
 	
 	
