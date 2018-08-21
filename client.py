@@ -6,9 +6,10 @@ class SocketHandler():
 		self.sock.connect(("CAMP-2ABE89", 3141))
 	#def connect(self, host, port):
         #sock.connect((host, port))
-
+	def send(self, msg):
+		self.sock.send(msg.encode('Utf-8'))
 wam = SocketHandler()
-
+wam.send("Hallo")
 print(socket.gethostname())
 # class Wsdf():
 	# x = 5
