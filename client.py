@@ -1,5 +1,5 @@
-import socket
 
+<<<<<<< HEAD
 class SocketHandler():
 	sock = socket.socket()
 	def __init__(self):
@@ -11,6 +11,11 @@ class SocketHandler():
 wam = SocketHandler()
 wam.send('Hallo')
 print(socket.gethostname())
+=======
+
+
+
+>>>>>>> ef47596c8566bedb70990892818f4f31ff314838
 # class Wsdf():
 	# x = 5
 	
