@@ -6,16 +6,16 @@ class SocketHandler():
 		self.sock.connect(("CAMP-2ABE89", 3141))
 	def send(self, msg):
 		self.sock.send(msg)
-	def receive(self)
+	def receive(self):
 		chunks = []
 		bytes_recd = 0
 		chunk = self.sock.recv(2048)
 		chunks.append(chunk)
-        bytes_recd = bytes_recd + len(chunk)
-        return b''.join(chunks)
+		bytes_recd = bytes_recd + len(chunk)
+		return join(chunks)
 wam = SocketHandler()
 wam.send('Hallo')
-
+wam.receive()
 print(socket.gethostname())
 
 
