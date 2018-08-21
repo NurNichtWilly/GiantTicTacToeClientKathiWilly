@@ -3,13 +3,13 @@ import socket
 class SocketHandler():
 	sock = socket.socket()
 	def __init__(self):
-		self.sock.connect(("CAMP-2ABE89", 3141))
+		self.sock.connect(("localhost", 3141))
 	#def connect(self, host, port):
         #sock.connect((host, port))
 	def send(self, msg):
-		self.sock.send(msg.encode('Utf-8'))
+		self.sock.send(msg)
 wam = SocketHandler()
-wam.send("Hallo")
+wam.send('Hallo')
 print(socket.gethostname())
 # class Wsdf():
 	# x = 5
