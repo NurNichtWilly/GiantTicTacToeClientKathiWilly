@@ -31,3 +31,10 @@ socket.send
 if __name__ == '__main__':
 	pass
 
+	
+	
+	
+#https://docs.python.org/3/howto/sockets.html#socket-howto
+#https://docs.python.org/3/library/socket.html
+#https://docs.python.org/3/library/struct.html
+#https://docs.python.org/3/library/index.html
