@@ -1,22 +1,3 @@
-import socket
-
-class SocketHandler():
-	sock = socket.socket()
-	def __init__(self):
-		self.sock.connect(("CAMP-2ABE89", 3141))
-		
-	def mysend(self, msg):
-		totalsent = 0
-		while totalsent < msg.len(str):
-			sent = self.sock.send(msg[totalsent:])
-			if sent == 0:
-				raise RuntimeError("socket connection broken")
-			totalsent = totalsent + sent
-		
-wam = SocketHandler()
-print(socket.gethostname())
-wam.mysend("hallo".encode("UTF-8"))
-print("done")
 
 
 
