@@ -1,16 +1,14 @@
 import socket
 
 class SocketHandler():
-	def __init__(self, sock=none):
-		if sock is None:
-            self.sock = socket.socket()
-        else:
-            self.sock = sock
-	def connect(self, host, port):
-        self.sock.connect((host, port))
+	sock = socket.socket()
+	def __init__(self):
+		self.sock.connect(("CAMP-2ABE89", 3141))
+	#def connect(self, host, port):
+        #sock.connect((host, port))
 
 wam = SocketHandler()
-wam.connect(self,, 10000)
+
 print(socket.gethostname())
 # class Wsdf():
 	# x = 5
