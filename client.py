@@ -12,10 +12,11 @@ class SocketHandler():
 		chunk = self.sock.recv(2048)
 		chunks.append(chunk)
 		bytes_recd = bytes_recd + len(chunk)
-		return join(chunks)
+		return chunks
 wam = SocketHandler()
 wam.send('Hallo')
-wam.receive()
+msg = wam.receive()
+print(msg)
 print(socket.gethostname())
 
 
