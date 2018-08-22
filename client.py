@@ -1,9 +1,10 @@
 
 import socket
+
 class SocketHandler():
 	sock = socket.socket()
 	def __init__(self):
-		self.sock.connect(("CAMP-2ABE89", 3141))
+		self.sock.connect(("CAMP-2ABE5C", 3141))
 	def send(self, msg):
 		self.sock.send(msg)
 	def receive(self):
@@ -13,9 +14,23 @@ class SocketHandler():
 		chunks.append(chunk)
 		bytes_recd = bytes_recd + len(chunk)
 		return chunks
+
+class ProtocolCoder():
+	@staticmethod
+	def parseMessage(msg):
+		if msg[0] == b'I':
+			return ProtocolCoder.parseInfoMessage(msg)
+		
+	@staticmethod
+	def parseInfoMessage(msg):
+		infoMessageParsed = {}
+		infoMessageParsed['clientId'] = msg[3] 
+		
+		bigBoard[][] = 
 wam = SocketHandler()
-wam.send('Hallo')
+#wam.send('Hallo')
 msg = wam.receive()
+
 print(msg)
 print(socket.gethostname())
 
