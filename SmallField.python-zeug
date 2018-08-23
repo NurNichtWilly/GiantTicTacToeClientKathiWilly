@@ -58,5 +58,5 @@ class SmallField():
 		newField = SmallField()
 		for i in range(0, 3)
 			for j in range(0, 3)
-				newField.cells[i][j] = field[x * 3 + i][y * 3 + j]
+				newField.set(i, j, field[x * 3 + i][y * 3 + j])
 	
