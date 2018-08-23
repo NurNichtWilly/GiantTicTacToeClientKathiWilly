@@ -3,7 +3,7 @@ import socket
 class SocketHandler():
 	sock = socket.socket()
 	def __init__(self):
-		self.sock.connect(("CAMP-2ABE5C", 3141))
+		self.sock.connect(("CAMP-1CFCB1", 3141))
 	def send(self, msg):
 		self.sock.send(msg)
 	def receive(self):
@@ -13,6 +13,13 @@ class SocketHandler():
 		chunks.append(chunk)
 		bytes_recd = bytes_recd + len(chunk)
 		return chunks
+		
+class PlayingBoard():
+	id = -1
+	cells = [[0 for x in range(9)] for y in range(9)]
+	bigBoard = [[0 for x in range(3)] for y in range(3)]
+	activeX = 3
+	activeY = 3
 
 class ProtocolCoder():
 	@staticmethod
@@ -25,62 +32,24 @@ class ProtocolCoder():
 	@staticmethod
 	def parseInfoMessage(parts):
 		print(parts)
-		infoMessageParsed = {}
-		infoMessageParsed['clientId'] = parts[0].decode()
-		for i in range(4,12):
-			bigBoard[i%9][i//9] = msg[i]
-		infoMessageParsed['bigBoard'] = bigBoard
-		for i in range(14,95):
-			cells[i%9][i//9] = msg[i]
-		infoMessageParsed['cells'] = cells
-		for i in range(0,1):
-			activeField[i] = msg[i+96]
-		infoMessageParsed[activeField] = activeField
-		print(infoMessageParsed)
+		board = PlayingBoard()
+		board.id = parts[2]
+		for i in range(0, 9):
+			board.bigBoard[i % 3][i // 3] = parts[4 + i]
+		for i in range(0, 81):
+			board.cells[i % 9][i // 9] = parts[14 + i]
+		board.activeX = parts[96]
+		board.activeY = parts[97]
+		return board
+		
 wam = SocketHandler()
 #wam.send('Hallo')
 msg = wam.receive()
-ProtocolCoder.parseInfoMessage(msg)
-print(msg)
-print(socket.gethostname())
+board = ProtocolCoder.parseInfoMessage(msg[0])
+print(board.id)
+print(board.bigBoard)
+print(board.cells)
 
-
-
-
-# class Wsdf():
-	# x = 5
-	
-	# def __init__(self):
-		# # konstruktor
-	
-	# @staticmethod
-	# def __str__():
-	
-	# def yxcv(self, bar):
-		# return bar
-	
-	# def qwer(self, foo):
-		# self.x = 5
-		# test = self.yxcv(self.x)
-		# return (test, foo)
-		
-
-# uiae = asdf()
-# print(uiae)
-# x, y = uiae.qwer("uio")
-
-# s = socket.socket(socket.AF_INET, socket.SOCK_DATAGRAM)
-# socket.recv
-# socket.send
-
-# 'test\x00string'.encode('utf-8')
-
-# if __name__ == '__main__':
-	# pass
-
-	
-	
-	
 #https://docs.python.org/3/howto/sockets.html#socket-howto
 #https://docs.python.org/3/library/socket.html
 #https://docs.python.org/3/library/struct.html
