@@ -1,0 +1,62 @@
+class SmallField():
+	
+	def __init__ (self)
+		self.cells = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+	
+	#Sets the cell at coordinates (x, y) to symbol
+	#0 = Empty
+	#1 = X
+	#2 = O
+	def set (self, x, y, symbol)
+		if symbol == 2
+			self.cells[x][y] = -1
+		else
+			self.cells[x][y] = symbol
+	
+	#Counts the number of rows/columns/diagonals in which checkSymbol occurs twice
+	#0 = Empty
+	#1 = X
+	#2 = O
+	def calculateValue (self, checkSymbol)
+		if checkSymbol == 2
+			checkSymbol = -1
+		#Check rows and columns
+		doubleSymbolCounter = 0
+		for j in range(0, 3)
+			rowSum = 0
+			columnSum = 0
+			for i in range(0, 3)
+				rowSum += self.cells[i][j]
+				columnSum += self.cells[j][i]
+			if rowSum == checkSymbol * 2
+				doubleSymbolCounter++
+			if columnSum == checkSymbol * 2 
+				doubleSymbolCounter++
+		#Check diagonals
+		diagonal1Sum = 0
+		diagonal2Sum = 0
+		for i in range(0, 3)
+			diagonal1Sum += self.cells[i][i]
+			diagonal2Sum += self.cells[2 - i][i]
+		if diagonal1Sum == checkSymbol * 2
+			doubleSymbolCounter++;
+		if diagonal2Sum == checkSymbol * 2 
+			doubleSymbolCounter++;
+		return doubleSymbolCounter
+	
+	#Returns a deep copy of self
+	def deepCopy (self)
+		newField = SmallField()
+		for i in range(0, 3)
+			for j in range(0, 3)
+				newField.cells[i][j] = self.cells[i][j]
+		return newField
+	
+	#Creates a SmallField object from the complete 9x9 board
+	@staticmethod
+	def from9x9Field(x, y, field)
+		newField = SmallField()
+		for i in range(0, 3)
+			for j in range(0, 3)
+				newField.cells[i][j] = field[x * 3 + i][y * 3 + j]
+	
