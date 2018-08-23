@@ -12,35 +12,36 @@ class SocketHandler():
 		chunk = self.sock.recv(2048)	
 		chunks.append(chunk)
 		bytes_recd = bytes_recd + len(chunk)
-		return chunks
+		return b''.join(chunks)
 
 class ProtocolCoder():
 	@staticmethod
 	def parseMessage(msg):
-		print(msg)
 		parts = msg.split(b'\xff')[:-1]
 		if b'I' in parts[0]:
 			return ProtocolCoder.parseInfoMessage(parts)
 		
 	@staticmethod
 	def parseInfoMessage(parts):
+		print('parts:')
 		print(parts)
 		infoMessageParsed = {}
-		infoMessageParsed['clientId'] = parts[0].decode()
-		for i in range(4,12):
-			bigBoard[i%9][i//9] = msg[i]
+		infoMessageParsed['id'] = parts[0].decode()
+		infoMessageParsed['clientId'] = ord(parts[1])
+		bigBoard = [['_'] * 3 for i in range(3)]
+		cells = [['_'] * 9 for i in range(9)]
+		for i in range(9):
+			bigBoard[i%3][i//3] = parts[2][i]
 		infoMessageParsed['bigBoard'] = bigBoard
-		for i in range(14,95):
-			cells[i%9][i//9] = msg[i]
+		for i in range(81):
+			cells[i%9][i//9] = parts[3][i]
 		infoMessageParsed['cells'] = cells
-		for i in range(0,1):
-			activeField[i] = msg[i+96]
-		infoMessageParsed[activeField] = activeField
+		infoMessageParsed['activeField'] = (ord(parts[4][0]), ord(parts[4][1]))
 		print(infoMessageParsed)
 wam = SocketHandler()
 #wam.send('Hallo')
 msg = wam.receive()
-ProtocolCoder.parseInfoMessage(msg)
+ProtocolCoder.parseMessage(msg)
 print(msg)
 print(socket.gethostname())
 
